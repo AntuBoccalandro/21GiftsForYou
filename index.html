@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>21 cosas que me hicieron pensar en vos 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Nunito", sans-serif;
+      overflow-x: hidden;
+      color: #4a148c;
+    }
+
+    #background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+    }
+
+    #bg-color {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffe4ec;
+      z-index: -1;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin: 20px 0;
+      text-align: center;
+      z-index: 1;
+      color: #d81b60;
+    }
+
+    #container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 15px;
+      width: 100%;
+      max-width: 600px;
+      z-index: 1;
+    }
+
+    .gift-box {
+      background-image: url('https://cdn-icons-png.flaticon.com/512/18402/18402929.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100px;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.2s;
+      filter: grayscale(100%);
+    }
+
+    .gift-box.active {
+      filter: none;
+    }
+
+    .gift-box.opened {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .gift-box:hover.active {
+      transform: scale(1.05);
+    }
+
+    .gift-box::after {
+      content: attr(data-day);
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #d81b60;
+      font-weight: bold;
+      font-size: 0.9em;
+      padding: 3px 6px;
+      border-radius: 6px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 16px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-align: left;
+      font-size: 1.1em;
+      font-family: "Nunito", sans-serif;
+      color: #1b1b1b;
+      position: relative;
+    }
+
+    .close {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #c2185b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      .modal-content {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="background"></div>
+<div id="bg-color"></div>
+
+<h1>21 cosas que me hicieron pensar en vos 💝</h1>
+<div id="container"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <p id="modal-text"></p>
+    <button class="close" onclick="closeModal()">Cerrar</button>
+  </div>
+</div>
+
+<!-- Particles.js -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  particlesJS("background", {
+    particles: {
+      number: { value: 150 },
+      color: { value: "#f48fb1" },
+      shape: { type: "circle" },
+      opacity: { value: 0.6 },
+      size: { value: 3 },
+      move: {
+        enable: true,
+        speed: 1.5,
+        direction: "none",
+        out_mode: "out"
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: { enable: false },
+        onclick: { enable: false }
+      }
+    },
+    retina_detect: true
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  const frases = [
+    `Esta es un poema del escritor Mario Benedetti, con algunas adaptaciones que le hice (así es más cortito jijijiji)\n
+“Me gusta la gente que vibra, que no hay que empujarla, que no hay que decirle que haga las cosas, sino que sabe lo que hay que hacer y que lo hace. La gente que cultiva sus sueños hasta que esos sueños se apoderan de su propia realidad.\n
+Me gusta la gente con capacidad para asumir las consecuencias de sus acciones, la gente que arriesga lo cierto por lo incierto para ir detrás de un sueño [...]\n
+Me gusta la gente capaz de criticarme constructivamente y de frente, pero sin lastimarme ni herirme [...]\n
+[...] La gente que mediante bromas nos enseña a concebir la vida con humor. La gente que nunca deja de ser aniñada.\n
+Me gusta la gente que tiene personalidad.\n
+[...] Me gusta la gente capaz de entender que el mayor error del ser humano, es intentar sacarse de la cabeza aquello que no sale del corazón.\n
+Con gente como ésa, me comprometo para lo que sea por el resto de mi vida [...]”`
+  ];
+
+  const startDate = new Date("2025-06-29");
+  const today = new Date();
+  const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
+  const container = document.getElementById("container");
+
+  for (let i = 0; i < 21; i++) {
+    const box = document.createElement("div");
+    box.className = "gift-box";
+    box.setAttribute("data-day", `Día ${i+1}`);
+    const opened = localStorage.getItem(`gift-${i}`);
+
+    if (i + 1 <= diffDays) {
+      box.classList.add("active");
+      if (opened) box.classList.add("opened");
+      box.onclick = () => {
+        if (!box.classList.contains("opened")) {
+          showModal(frases[i] || `Día ${i+1}: 🎁 Aún no cargué esta frase, pero te amo 💖`);
+          box.classList.add("opened");
+          localStorage.setItem(`gift-${i}`, true);
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ["#ff69b4", "#ffd1dc", "#ffffff"]
+          });
+        }
+      };
+    }
+    container.appendChild(box);
+  }
+
+  function showModal(frase) {
+    const modal = document.getElementById("modal");
+    const modalText = document.getElementById("modal-text");
+    modalText.innerHTML = frase.replace(/\n/g, "<br>");
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+
+  document.getElementById("modal").addEventListener("click", function (e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+</script>
+
+</body>
+</html>
