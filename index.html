@@ -196,26 +196,13 @@
 <script>
   const frases = [
     `Esta es un poema del escritor Mario Benedetti, con algunas adaptaciones que le hice (así es más cortito jijijiji)\n
-“Me gusta la gente que vibra, que no hay que empujarla, que no hay que decirle que haga las cosas, sino que sabe lo que hay que hacer y que lo hace. La gente que cultiva sus sueños hasta que esos sueños se apoderan de su propia realidad.\n
-Me gusta la gente con capacidad para asumir las consecuencias de sus acciones, la gente que arriesga lo cierto por lo incierto para ir detrás de un sueño [...]\n
-Me gusta la gente capaz de criticarme constructivamente y de frente, pero sin lastimarme ni herirme [...]\n
-[...] La gente que mediante bromas nos enseña a concebir la vida con humor. La gente que nunca deja de ser aniñada.\n
-Me gusta la gente que tiene personalidad.\n
-[...] Me gusta la gente capaz de entender que el mayor error del ser humano, es intentar sacarse de la cabeza aquello que no sale del corazón.\n
-Con gente como ésa, me comprometo para lo que sea por el resto de mi vida [...]”\n
+“Me gusta la gente que vibra [...]”\n
 En fin, tu tienes todas estas cualidades, me gustas tu.`,
+    
+    `¡Tienes una playlist de spotify lista para escuchar (estate atenta a los detalles 😜)!
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3x2m6g8klRnYC6yfHbcJaD?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`,
 
-`
-¡Tienes una playlist de spotify lista para escuchar (estate atenta a los detalles 😜)!
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3x2m6g8klRnYC6yfHbcJaD?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-`,
-
-`
-`,
-¡Tienes una playlist de spotify lista para escuchar (estate atenta a los detalles 😜)!
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3x2m6g8klRnYC6yfHbcJaD?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-`
-Tus manos son mi caricia\n
+    `Tus manos son mi caricia\n
 Mis acordes cotidiano\n
 Te quiero porque tus manos\n
 Trabajan por la justicia.\n
@@ -260,81 +247,30 @@ Mi amor, mi cómplice y todo\n
 Y en la calle codo a codo\n
 Somos mucho más que dos\n
 
--Mario Bennedetti (me gusta mucho éste escritor, 🫠 ya mañana alguna que me digne a escribir yo 🙃)
-`,
-
-`
-Dia 5
-`,
-
-`
-Dia 6
-`,
-
-`
-Dia 7
-`,
-
-`
-Dia 8
-`,
-
-`
-Dia 9
-`,
-
-`
-Dia 10
-`,
-
-`
-Dia 11
-`,
-
-`
-Dia 12
-`,
-
-`
-Dia 13
-`,
-
-`
-¡Un mes junto a ti amor!\n
-Siempre vale la pena el tiempo a tu lado, las tardes compartidas, los deseos cumplidos, los que quedan por cumplirse. Me gustaría que esto dure toda la vida, pero por ahora me tendré que conformar con todo el tiempo que hemos estado juntos. Te amo, sos el amor de mi vida. Mi chica hermosa :D
-
-`,
-
-`
-Dia 15
-`,
-
-`
-Dia 16
-`,
-
-`
-Dia 17
-`,
-
-`
-Dia 18
-`,
-
-`
-Dia 19
-`,
-
-`
-Dia 20
-`,
-
-`
-Dia 21
-`
+-Mario Bennedetti (me gusta mucho éste escritor, 🫠 ya mañana alguna que me digne a escribir yo 🙃)`,
+    
+    `Día 4`,
+    `Día 5`,
+    `Día 6`,
+    `Día 7`,
+    `Día 8`,
+    `Día 9`,
+    `Día 10`,
+    `Día 11`,
+    `Día 12`,
+    `Día 13`,
+    `¡Un mes junto a ti amor!\n
+      Siempre vale la pena el tiempo a tu lado, las tardes compartidas, los deseos cumplidos, los que quedan por cumplirse. Me gustaría que esto dure toda la vida, pero por ahora me tendré que conformar con todo el tiempo que hemos estado juntos. Te amo, sos el amor de mi vida. Mi chica hermosa :D`,
+    `Día 15`,
+    `Día 16`,
+    `Día 17`,
+    `Día 18`,
+    `Día 19`,
+    `Día 20`,
+    `Día 21`
   ];
 
-  const startDate = new Date("2025-06-28");
+  const startDate = new Date("2025-06-29");
   const today = new Date();
   const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
 
@@ -344,16 +280,13 @@ Dia 21
     const box = document.createElement("div");
     box.className = "gift-box";
     box.setAttribute("data-day", `Día ${i+1}`);
-    const opened = localStorage.getItem(`gift-${i}`);
 
     if (i + 1 <= diffDays) {
       box.classList.add("active");
-      if (opened) box.classList.add("opened");
       box.onclick = () => {
         if (!box.classList.contains("opened")) {
           showModal(frases[i] || `Día ${i+1}: 🎁 Aún no cargué esta frase, pero te amo 💖`);
           box.classList.add("opened");
-          localStorage.setItem(`gift-${i}`, true);
           confetti({
             particleCount: 100,
             spread: 70,
@@ -363,6 +296,7 @@ Dia 21
         }
       };
     }
+
     container.appendChild(box);
   }
 
@@ -383,6 +317,7 @@ Dia 21
     }
   });
 </script>
+
 
 </body>
 </html>
